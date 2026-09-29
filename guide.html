@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real Runs — The Co-Packing Guide Nobody Wanted You to Have</title>
+<meta name="description" content="The unfiltered co-packing guide for food and supplement brands. 13 chapters, a full production checklist, and the math that should stop you from making a $130,000 mistake.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1e2d3d;
+    --navy-light: #243547;
+    --rust: #c4522a;
+    --rust-light: #d4622a;
+    --cream: #ede8e0;
+    --cream-muted: #c8c2b8;
+    --white: #ffffff;
+    --border: rgba(255,255,255,0.1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 3rem;
+    text-align: center;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rust);
+    border: 1px solid var(--rust);
+    padding: 0.35em 0.9em;
+    border-radius: 2px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 em {
+    color: var(--rust);
+    font-style: normal;
+  }
+
+  .hero p.lead {
+    font-size: 1.1rem;
+    color: var(--cream-muted);
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  /* MATH CALLOUT */
+  .math-block {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--rust);
+    border-radius: 4px;
+    padding: 2.5rem 2rem;
+    margin: 0 auto 3.5rem;
+    max-width: 680px;
+    text-align: left;
+  }
+
+  .math-block .label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.25rem;
+  }
+
+  .math-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+  }
+
+  .math-row:last-child { border-bottom: none; }
+
+  .math-row .item {
+    font-size: 0.9rem;
+    color: var(--cream-muted);
+    flex: 1;
+  }
+
+  .math-row .val-good {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #6ec97a;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .math-row .val-bad {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #e07070;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .math-row.total {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    border-bottom: none;
+  }
+
+  .math-row.total .item {
+    font-weight: 700;
+    color: var(--cream);
+    font-size: 0.95rem;
+  }
+
+  .math-col-heads {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.25rem;
+    gap: 1rem;
+  }
+
+  .math-col-heads span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .math-col-heads .h-item { flex: 1; color: var(--cream-muted); }
+  .math-col-heads .h-good { color: #6ec97a; text-align: right; white-space: nowrap; }
+  .math-col-heads .h-bad { color: #e07070; text-align: right; white-space: nowrap; }
+
+  .math-footnote {
+    margin-top: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--cream-muted);
+    line-height: 1.5;
+  }
+
+  .math-footnote strong {
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  /* WHAT'S INSIDE */
+  .inside {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3.5rem;
+  }
+
+  .inside h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .chapter-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 1.5rem;
+  }
+
+  @media (max-width: 520px) {
+    .chapter-list { grid-template-columns: 1fr; }
+  }
+
+  .chapter-list li {
+    font-size: 0.9rem;
+    color: var(--cream-muted);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 0.6rem;
+    align-items: baseline;
+  }
+
+  .chapter-list li::before {
+    content: '→';
+    color: var(--rust);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  /* QUOTE */
+  .pullquote {
+    max-width: 680px;
+    margin: 0 auto 3.5rem;
+    padding: 0 1.5rem;
+  }
+
+  .pullquote blockquote {
+    border-left: 3px solid var(--rust);
+    padding: 1.25rem 1.5rem;
+    background: var(--navy-light);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .pullquote blockquote p {
+    font-size: 1rem;
+    color: var(--cream);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+
+  .pullquote blockquote cite {
+    font-size: 0.8rem;
+    font-style: normal;
+    color: var(--cream-muted);
+    font-weight: 600;
+  }
+
+  /* FORM */
+  .form-section {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+    text-align: center;
+  }
+
+  .form-section h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .form-section p {
+    font-size: 0.9rem;
+    color: var(--cream-muted);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group input {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.9rem 1.1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .form-group input::placeholder { color: var(--cream-muted); opacity: 0.6; }
+  .form-group input:focus { border-color: var(--rust); }
+
+  .btn-submit {
+    background: var(--rust);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    padding: 1rem 2rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-submit:hover { background: var(--rust-light); }
+
+  .form-note {
+    font-size: 0.78rem;
+    color: var(--cream-muted);
+    margin-top: 1rem;
+    opacity: 0.7;
+  }
+
+  /* SUCCESS */
+  .success-msg {
+    display: none;
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-top: 3px solid #6ec97a;
+    border-radius: 4px;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .success-msg h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .success-msg p {
+    font-size: 0.9rem;
+    color: var(--cream-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .success-msg a {
+    color: var(--rust);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .footer p {
+    font-size: 0.8rem;
+    color: var(--cream-muted);
+    opacity: 0.6;
+  }
+
+  .footer a {
+    color: var(--cream-muted);
+    text-decoration: none;
+  }
+
+  .footer a:hover { color: var(--cream); }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 680px;
+    margin: 0 auto 3.5rem;
+    padding: 0 1.5rem;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">Free Guide — North Lakes Copacking</div>
+  <h1>The Co-Packing Guide<br><em>Nobody Wanted You to Have</em></h1>
+  <p class="lead">13 chapters. A production checklist that covers 6 phases. And the math that shows exactly how a "great deal" on a big run turns into a $130,000 mistake.</p>
+</section>
+
+<!-- MATH CALLOUT -->
+<div class="math-block">
+  <div class="label">The math most co-packers don't show you</div>
+  <div class="math-col-heads">
+    <span class="h-item">Total exposure</span>
+    <span class="h-good">5k units/flavor</span>
+    <span class="h-bad">50k units/flavor</span>
+  </div>
+  <div class="math-row">
+    <span class="item">Upfront production</span>
+    <span class="val-good">$15,600</span>
+    <span class="val-bad">$129,000</span>
+  </div>
+  <div class="math-row">
+    <span class="item">Storage, 12 months</span>
+    <span class="val-good">$2,400</span>
+    <span class="val-bad">$9,600</span>
+  </div>
+  <div class="math-row">
+    <span class="item">Interest (if borrowed @8%)</span>
+    <span class="val-good">$1,248</span>
+    <span class="val-bad">$10,320</span>
+  </div>
+  <div class="math-row total">
+    <span class="item">Total capital at risk</span>
+    <span class="val-good">$19,848</span>
+    <span class="val-bad">$149,520</span>
+  </div>
+  <p class="math-footnote">The co-packing "savings" at 50,000 units is <strong>$27,000</strong>. Your additional exposure is <strong>$129,672</strong>. That is not a deal. That is a trap with a bow on it.</p>
+</div>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside">
+  <h2>What's inside Real Runs</h2>
+  <ul class="chapter-list">
+    <li>The first call — what to know before you dial</li>
+    <li>The spec sheet and MSA — what to actually read</li>
+    <li>Film — the thing everyone gets wrong</li>
+    <li>The $525 proof-of-concept run</li>
+    <li>Ingredients, sourcing, flow agents</li>
+    <li>Shelf life and stability testing</li>
+    <li>Yield loss and shipping damage</li>
+    <li>Kitting, samples, and hidden costs</li>
+    <li>Ti-Hi, master cases, and pallets</li>
+    <li>Fulfillment — the hidden fee playbook</li>
+    <li>Prop 65, GTINs, Amazon, compliance</li>
+    <li>After your first run — the scaling trap</li>
+    <li>The Ole perspective</li>
+    <li>Full 6-phase production checklist</li>
+  </ul>
+</section>
+
+<hr class="divider">
+
+<!-- QUOTE -->
+<div class="pullquote">
+  <blockquote>
+    <p>"On our first production run we were in for $250,000. We lost 80% of it to faulty seals from a co-packer who knew they had a problem, doubled down, and kept running anyway. When we sifted through the product, we found over 30 pounds of rock-hard chunks. They were GMP and SQF certified, by the way."</p>
+    <cite>— Ole Hovde, Founder, North Lakes Copacking</cite>
+  </blockquote>
+</div>
+
+<!-- FORM -->
+<section class="form-section">
+  <h2>Get the guide free</h2>
+  <p>Drop your email and we'll send it straight to you. No sequences, no drip campaigns, no weekly newsletters. Just the guide.</p>
+
+  <div id="form-wrap">
+    <form id="signup-form" class="form-group" novalidate>
+      <input type="text" name="name" placeholder="Your first name" required autocomplete="given-name">
+      <input type="email" name="email" placeholder="Your email address" required autocomplete="email">
+      <button type="submit" class="btn-submit">Send me Real Runs →</button>
+    </form>
+    <p class="form-note">We don't sell your email. We don't spam. That's it.</p>
+  </div>
+
+  <div class="success-msg" id="success-msg">
+    <h3>You're in.</h3>
+    <p>Check your inbox — Real Runs is on its way. If you have questions before your first run, call us directly at <a href="tel:6129163566">612.916.3566</a> or email <a href="mailto:ole@northlakescopacking.com">ole@northlakescopacking.com</a>.</p>
+    <p style="margin-top:0.5rem"><a href="https://northlakescopacking.com">← Back to North Lakes Copacking</a></p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>North Lakes Copacking · Minneapolis, MN · FDA Registered<br>
+  <a href="https://northlakescopacking.com">northlakescopacking.com</a> · <a href="mailto:ole@northlakescopacking.com">ole@northlakescopacking.com</a> · 612.916.3566</p>
+</footer>
+
+<script>
+  // Replace this with your Google Form action URL
+  // To get it: create a Google Form, click the three dots > "Get pre-filled link",
+  // then use the form action URL from the form's HTML source
+  // OR use Formspree: https://formspree.io — free for 50 submissions/month
+  // Replace the URL below with your Formspree endpoint once created
+
+  const FORM_ENDPOINT = 'https://formspree.io/f/maenoqwo';
+
+  document.getElementById('signup-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const btn = form.querySelector('button');
+    const name = form.querySelector('[name="name"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+
+    if (!name || !email) return;
+
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name, email, _subject: 'Real Runs guide request' })
+      });
+
+      if (res.ok) {
+        document.getElementById('form-wrap').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+      } else {
+        btn.textContent = 'Send me Real Runs →';
+        btn.disabled = false;
+        alert('Something went wrong — email us directly at ole@northlakescopacking.com');
+      }
+    } catch(err) {
+      btn.textContent = 'Send me Real Runs →';
+      btn.disabled = false;
+      alert('Something went wrong — email us directly at ole@northlakescopacking.com');
+    }
+  });
+</script>
+
+</body>
+</html>
