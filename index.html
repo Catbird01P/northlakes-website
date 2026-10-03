@@ -347,6 +347,20 @@
   footer .fcol a, footer .fcol p{ display:block; font-size:0.9rem; color:#DEDACD; text-decoration:none; margin-bottom:7px; }
   footer .fcol a:hover{ color:var(--gold); }
   footer .fbottom{ margin-top:34px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.12); font-size:0.78rem; color:#8B958A; }
+
+/* Client portal login (nav) */
+.nav-actions{ display:flex; align-items:center; gap:14px; flex-shrink:0; }
+.nav-portal{ display:inline-flex; align-items:center; gap:7px; font-family:"League Spartan",Arial,sans-serif; font-weight:700; font-size:0.95rem; color:var(--ink); text-decoration:none; padding:11px 16px; border:1.5px solid var(--line); border-radius:9px; transition:border-color .15s ease, color .15s ease; white-space:nowrap; }
+.nav-portal:hover{ border-color:var(--navy); color:var(--navy); }
+@media (max-width:520px){
+  .nav-actions{ gap:8px; }
+  .nav-portal{ padding:10px 11px; font-size:0.88rem; }
+  .nav-actions .btn{ padding:10px 14px; font-size:0.88rem; }
+}
+.np-short{ display:none; }
+@media (max-width:520px){ nav .logo{ font-size:1.05rem; line-height:1.1; white-space:nowrap; } nav .logo span{ display:block; } }
+@media (max-width:520px){ .np-long{ display:none; } .np-short{ display:inline; } }
+@media (max-width:400px){ .nav-portal{ padding:9px 9px; gap:5px; } .nav-actions .btn{ padding:9px 11px; } }
 </style>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -365,7 +379,7 @@
       <a href="#faq">FAQ</a>
       <a href="/blog/">Journal</a>
     </div>
-    <a href="#quote" class="btn btn-dark">Get a Quote</a>
+    <div class="nav-actions"><a href="https://nlc-portal.pages.dev/login" class="nav-portal"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span class="np-long">Client Login</span><span class="np-short">Login</span></a><a href="#quote" class="btn btn-dark">Get a Quote</a></div>
   </div>
 </nav>
 
