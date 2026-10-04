@@ -38,6 +38,35 @@ footer{background:var(--white);border-top:1px solid var(--border);padding:2.5rem
 .foot-bottom p{font-size:0.72rem;color:var(--gray2)}
 @media(max-width:880px){nav{padding:0 1.25rem}.nav-links{display:none}.container{padding:0 1.25rem}.foot-inner{grid-template-columns:1fr}}
 </style>
+<!-- Keychain pixel -->
+<script>
+(function (config) {
+  'use strict';
+  if (!config.pixelId || !config.apiEndpoint || !config.cdn) {
+    if (typeof console !== 'undefined') { console.error('[Keychain Pixel] Configuration incomplete'); }
+    return;
+  }
+  window.keychainPixel = window.keychainPixel || {};
+  var pixel = window.keychainPixel;
+  pixel.init = function () {
+    if (document.getElementById('__keychain_pixel__')) return;
+    var script = document.createElement('script');
+    script.async = true;
+    script.type = 'text/javascript';
+    script.id = '__keychain_pixel__';
+    script.dataset.pixelId = config.pixelId;
+    script.dataset.apiEndpoint = config.apiEndpoint;
+    script.dataset.cdn = config.cdn;
+    script.src = config.cdn + '/keychain/pixel.js';
+    document.head.appendChild(script);
+  };
+  pixel.init();
+})({
+  cdn: 'https://assets.keychain.com',
+  apiEndpoint: 'https://pixel-edge.keychain.com',
+  pixelId: 'MANUFACTURER_0UHGBM8OPZ_5COERUMC',
+});
+</script>
 </head>
 <body>
 <nav>

@@ -17,6 +17,35 @@
 <meta property="og:description" content="Light fills, fast throughput, multi-flavor flexibility. Electrolyte economics explained.">
 <meta property="og:url" content="https://northlakescopacking.com/blog/electrolyte-powder-co-packing.html">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Electrolyte Powder Co-Packing","description":"Light fills, fast throughput, multi-flavor flexibility. Electrolyte economics explained.","datePublished":"2026-09-17","dateModified":"2026-09-17","author":{"@type":"Person","name":"Ole Hovde"},"publisher":{"@type":"Organization","name":"North Lakes Copacking","url":"https://northlakescopacking.com/"}}</script>
+<!-- Keychain pixel -->
+<script>
+(function (config) {
+  'use strict';
+  if (!config.pixelId || !config.apiEndpoint || !config.cdn) {
+    if (typeof console !== 'undefined') { console.error('[Keychain Pixel] Configuration incomplete'); }
+    return;
+  }
+  window.keychainPixel = window.keychainPixel || {};
+  var pixel = window.keychainPixel;
+  pixel.init = function () {
+    if (document.getElementById('__keychain_pixel__')) return;
+    var script = document.createElement('script');
+    script.async = true;
+    script.type = 'text/javascript';
+    script.id = '__keychain_pixel__';
+    script.dataset.pixelId = config.pixelId;
+    script.dataset.apiEndpoint = config.apiEndpoint;
+    script.dataset.cdn = config.cdn;
+    script.src = config.cdn + '/keychain/pixel.js';
+    document.head.appendChild(script);
+  };
+  pixel.init();
+})({
+  cdn: 'https://assets.keychain.com',
+  apiEndpoint: 'https://pixel-edge.keychain.com',
+  pixelId: 'MANUFACTURER_0UHGBM8OPZ_5COERUMC',
+});
+</script>
 </head>
 <body>
 <nav>
