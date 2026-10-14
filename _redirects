@@ -1,0 +1,4 @@
+# Keep the blog drip queue and tooling off the public site
+/_queue/*  /blog/  302
+/_queue    /blog/  302
+/scripts/* /       302
