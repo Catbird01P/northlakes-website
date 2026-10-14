@@ -1,0 +1,44 @@
+name: Drip-publish blog post
+
+on:
+  schedule:
+    # GitHub cron is UTC only. 14:00 UTC = 9am CDT, 15:00 UTC = 9am CST.
+    # The script publishes once per Chicago day, at/after 9am, so both runs are safe.
+    - cron: "0 14 * * *"
+    - cron: "0 15 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Publish the next post now (ignores 9am / once-a-day checks)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: drip-blog
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Publish next queued post
+        id: drip
+        run: python scripts/drip_publish.py ${{ inputs.force && '--force' || '' }}
+
+      - name: Commit and push (triggers Cloudflare build)
+        if: steps.drip.outputs.published != ''
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git add -A blog sitemap.xml _queue
+          git commit -m "Publish blog post: ${{ steps.drip.outputs.published }}"
+          git push
