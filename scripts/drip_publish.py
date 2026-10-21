@@ -24,11 +24,11 @@ SITEMAP = ROOT / "sitemap.xml"
 SITE = "https://northlakescopacking.com"
 PUBLISH_HOUR = 9
 
-CARD = """    <div style="background:#fff;border:1px solid #d8d2c8;border-radius:10px;padding:1.5rem;display:flex;flex-direction:column;">
-      <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#c4522a;display:block;margin-bottom:0.5rem">{category}</span>
-      <h3 style="font-size:0.95rem;font-weight:800;color:#1c1a18;margin-bottom:0.4rem;line-height:1.4;flex:1"><a href="/blog/{file}" style="color:#1c1a18;text-decoration:none">{title}</a></h3>
-      <p style="font-size:0.85rem;color:#5a5650;margin-bottom:0.75rem;line-height:1.6">{excerpt}</p>
-      <a href="/blog/{file}" style="font-size:0.78rem;font-weight:700;color:#c4522a;text-decoration:none">Read &rarr;</a>
+CARD = """    <div style="background:#fff;border:1px solid #E4E0D6;border-radius:10px;padding:1.5rem;display:flex;flex-direction:column;">
+      <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#A8322D;display:block;margin-bottom:0.5rem">{category}</span>
+      <h3 style="font-size:0.95rem;font-weight:800;color:#1E2622;margin-bottom:0.4rem;line-height:1.4;flex:1"><a href="/blog/{file}" style="color:#1E2622;text-decoration:none">{title}</a></h3>
+      <p style="font-size:0.85rem;color:#59625D;margin-bottom:0.75rem;line-height:1.6">{excerpt}</p>
+      <a href="/blog/{file}" style="font-size:0.78rem;font-weight:700;color:#A8322D;text-decoration:none">Read &rarr;</a>
     </div>
 """
 
