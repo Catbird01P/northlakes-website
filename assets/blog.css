@@ -201,3 +201,7 @@ footer .fbottom{ color:#9FB2A8; }
   .brand-name b{ font-size:0.78rem; letter-spacing:0.08em; }
 }
 @media (max-width:420px){ .brand-name{ display:none; } }
+
+/* Buttons inside article prose keep button colors (prose link styles were overriding them). */
+.prose a.btn{ text-decoration:none; font-weight:600; }
+.prose a.btn-primary, .prose a.btn-primary:hover, .prose a.btn-dark, .prose a.btn-dark:hover{ color:#fff; }
