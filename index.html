@@ -86,6 +86,14 @@
     },
     {
       "@type": "Question",
+      "name": "Why do allergen products have a clean-down fee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your product contains a major allergen (milk, egg, fish, shellfish, tree nuts, peanuts, wheat, soy or sesame), we fully sanitize the line after your run, from the auger motor down to the deck, and verify it with allergen test swabs before allergen-free products run again. That takes about 3.5 hours, so it's a flat $649 per run. Book back-to-back runs of the same allergen and you pay it once. It's also why brands with allergen-free products can trust our line."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "How fast will I get a quote, and what's the turnaround?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -569,7 +577,8 @@
       <table>
         <tr><th>Item</th><th>Fee</th><th>Details</th></tr>
         <tr><td>Changeover — same package size, non-allergen, no full clean-out</td><td class="amt">$149</td><td class="soft">Flavor switch within an existing run block.</td></tr>
-        <tr><td>Changeover — full clean-out, allergen clean-out, or package size change</td><td class="amt">$649</td><td class="soft">Anything that requires a true reset of the line.</td></tr>
+        <tr><td>Changeover — full clean-out or package size change</td><td class="amt">$649</td><td class="soft">Anything that requires a true reset of the line.</td></tr>
+        <tr><td>Allergen clean-down — your product contains milk, egg, fish, shellfish, tree nuts, peanuts, wheat, soy or sesame</td><td class="amt">$649 / run</td><td class="soft">After your run we sanitize the line from the auger motor down to the deck and verify it with allergen test swabs, so the next brand&rsquo;s allergen-free product runs on a clean line. Back-to-back runs of the same allergen pay it once.</td></tr>
         <tr><td>Rush order</td><td class="amt">Ask us</td><td class="soft">We'll do it when line time and materials allow. Fee depends on the ask.</td></tr>
         <tr><td>Pathogen / micro testing (per test)</td><td class="amt">$35</td><td class="soft">Includes shipping your sample to the lab. We don't mark up lab work.</td></tr>
         <tr><td>Identity testing &mdash; supplements we blend (per dietary-ingredient lot)</td><td class="amt">$225</td><td class="soft">Required by FDA (21 CFR 111.75) for every lot of each dietary ingredient we blend. Pre-blended product we only fill and pack doesn't need it &mdash; just your blend spec sheet.</td></tr>
@@ -712,6 +721,10 @@
       <div class="faq-item">
         <button class="faq-q"><span>Are you GMP or SQF certified?</span><span class="plus">+</span></button>
         <div class="faq-a"><p>We follow cGMP (21 CFR 111 for supplements, 117 for food) and the SQF Fundamentals Intermediate code, with a written batch record for every lot. We're a small shop and won't claim a certificate we don't hold. Ask us for a walkthrough any time.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>Why do allergen products have a clean-down fee?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>If your product contains a major allergen (milk, egg, fish, shellfish, tree nuts, peanuts, wheat, soy or sesame), we fully sanitize the line after your run, from the auger motor down to the deck, and verify it with allergen test swabs before allergen-free products run again. That takes about 3.5 hours, so it&rsquo;s a flat $649 per run. Book back-to-back runs of the same allergen and you pay it once. It&rsquo;s also why brands with allergen-free products can trust our line.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>How fast will I get a quote, and what's the turnaround?</span><span class="plus">+</span></button>
@@ -949,14 +962,18 @@
               <div class="field"><label>Target timeline</label><input type="text" id="q_timeline" placeholder="e.g. ready by Nov 2026"></div>
             </div>
             <div class="field">
-              <label>Allergens present <span class="hint">(select all that apply)</span></label>
+              <label>Allergens present <span class="hint">(select all that apply &mdash; any major allergen adds a $649 clean-down per run)</span></label>
               <div class="checkbox-grid">
                 <label><input type="checkbox" name="q_allergen" value="None"> None</label>
-                <label><input type="checkbox" name="q_allergen" value="Tree nuts / peanuts"> Tree nuts / peanuts</label>
-                <label><input type="checkbox" name="q_allergen" value="Dairy"> Dairy</label>
+                <label><input type="checkbox" name="q_allergen" value="Milk"> Milk</label>
+                <label><input type="checkbox" name="q_allergen" value="Eggs"> Eggs</label>
+                <label><input type="checkbox" name="q_allergen" value="Fish"> Fish</label>
+                <label><input type="checkbox" name="q_allergen" value="Crustacean shellfish"> Crustacean shellfish</label>
+                <label><input type="checkbox" name="q_allergen" value="Tree nuts"> Tree nuts</label>
+                <label><input type="checkbox" name="q_allergen" value="Peanuts"> Peanuts</label>
+                <label><input type="checkbox" name="q_allergen" value="Wheat"> Wheat</label>
                 <label><input type="checkbox" name="q_allergen" value="Soy"> Soy</label>
-                <label><input type="checkbox" name="q_allergen" value="Gluten"> Gluten</label>
-                <label><input type="checkbox" name="q_allergen" value="Other"> Other</label>
+                <label><input type="checkbox" name="q_allergen" value="Sesame"> Sesame</label>
               </div>
             </div>
             <div class="field">
