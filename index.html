@@ -381,7 +381,7 @@
   .field{ margin-bottom:18px; }
   .field label{ display:block; font-size:0.9rem; font-weight:600; margin-bottom:6px; }
   .field .hint{ font-size:0.8rem; color:var(--ink-faint); font-weight:400; margin-left:5px; }
-  .field input[type=text], .field input[type=email], .field input[type=tel], .field input[type=number], .field textarea{
+  .field input[type=text], .field input[type=email], .field input[type=tel], .field input[type=number], .field textarea, .field select{
     width:100%; padding:13px 14px; border:1px solid #CDC8BC; border-radius:10px; background:var(--paper); color:var(--ink); font-family:var(--body); font-size:1rem;
   }
   .field input:focus, .field textarea:focus{ outline:2px solid var(--pine); outline-offset:1px; }
@@ -391,6 +391,9 @@
   .checkbox-grid label{ display:flex; align-items:center; gap:8px; font-weight:400; font-size:0.95rem; }
   .checkbox-grid input{ accent-color:var(--pine); width:18px; height:18px; }
   .form-nav{ display:flex; justify-content:space-between; margin-top:24px; gap:12px; flex-wrap:wrap; }
+  .nl-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .checkbox-grid.one{ grid-template-columns:1fr; }
+  .nl-actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:18px; }
   .btn-back{ background:transparent; color:var(--ink); border-color:var(--line); }
   .success{ display:none; text-align:center; padding:24px 0; }
   .success.active{ display:block; }
@@ -919,8 +922,9 @@
     <div class="quote-wrap">
       <div class="steps-side">
         <div class="step-item active" data-step-indicator="1"><div class="sdot">1</div><div><h5>You &amp; your brand</h5><p>Who we're talking to</p></div></div>
-        <div class="step-item" data-step-indicator="2"><div class="sdot">2</div><div><h5>The product</h5><p>Format, fill weight, formula</p></div></div>
-        <div class="step-item" data-step-indicator="3"><div class="sdot">3</div><div><h5>Volume &amp; timeline</h5><p>Units, allergens, when you need it</p></div></div>
+        <div class="step-item" data-step-indicator="2"><div class="sdot">2</div><div><h5>The product</h5><p>What it is, formats, how many SKUs</p></div></div>
+        <div class="step-item" data-step-indicator="3"><div class="sdot">3</div><div><h5>How we'd run it</h5><p>Packaging, blending, ingredients</p></div></div>
+        <div class="step-item" data-step-indicator="4"><div class="sdot">4</div><div><h5>Volume &amp; timeline</h5><p>Units, allergens, when you need it</p></div></div>
       </div>
       <div class="form-card">
         <form id="quoteForm" onsubmit="return false;">
@@ -933,12 +937,14 @@
               <div class="field"><label>Email</label><input type="email" id="q_email" required></div>
               <div class="field"><label>Phone <span class="hint">(optional)</span></label><input type="tel" id="q_phone"></div>
             </div>
+            <div class="nl-hp" aria-hidden="true"><label>Website</label><input type="text" id="q_website" tabindex="-1" autocomplete="off"></div>
             <div class="form-nav"><span></span><button type="button" class="btn btn-dark" onclick="nlNextStep(1)">Next: The Product →</button></div>
           </div>
 
           <div class="form-step" data-step="2">
+            <div class="field"><label>What is the product?</label><input type="text" id="q_formula" placeholder="e.g. electrolyte powder, protein blend, seasoning"></div>
             <div class="field">
-              <label>Packaging format</label>
+              <label>Packaging format <span class="hint">(select all that apply)</span></label>
               <div class="checkbox-grid">
                 <label><input type="checkbox" name="q_format" value="Sachets"> Sachets</label>
                 <label><input type="checkbox" name="q_format" value="Stick packs"> Stick packs</label>
@@ -946,20 +952,98 @@
                 <label><input type="checkbox" name="q_format" value="Gusset bags (hand-fill)"> Gusset bags (hand-fill)</label>
               </div>
             </div>
-            <div class="field-row">
-              <div class="field"><label>Fill weight (grams)</label><input type="number" id="q_fillweight" placeholder="e.g. 25"></div>
-              <div class="field"><label>Product / formula</label><input type="text" id="q_formula" placeholder="e.g. electrolyte powder"></div>
+            <div class="field">
+              <label>How many products or flavors?</label>
+              <div class="checkbox-grid">
+                <label><input type="radio" name="q_skus" value="1"> 1</label>
+                <label><input type="radio" name="q_skus" value="2-3"> 2–3</label>
+                <label><input type="radio" name="q_skus" value="4-10"> 4–10</label>
+                <label><input type="radio" name="q_skus" value="10+"> 10+</label>
+              </div>
+            </div>
+            <div class="field" id="nl_same_wrap" style="display:none">
+              <label>Same fill weight and bag for all of them?</label>
+              <div class="checkbox-grid">
+                <label><input type="radio" name="q_same" value="yes"> Yes, same for all</label>
+                <label><input type="radio" name="q_same" value="no"> No, they vary</label>
+              </div>
+            </div>
+            <div class="field" id="nl_fill_wrap"><label>Fill weight (grams) <span class="hint">(per unit; leave blank if not sure)</span></label><input type="number" id="q_fillweight" placeholder="e.g. 25" min="0" step="any"></div>
+            <div class="field" id="nl_skulist_wrap" style="display:none">
+              <label>List each one <span class="hint">(product, fill weight, format, rough units)</span></label>
+              <textarea id="q_skulist" rows="4" placeholder="Lemon electrolyte, 7 g, stick pack, 5,000&#10;Berry electrolyte, 7 g, stick pack, 3,000"></textarea>
+            </div>
+            <div class="field">
+              <label>Is the product already made?</label>
+              <div class="checkbox-grid one">
+                <label><input type="radio" name="q_made" value="yes"> Yes, it just needs blending and packing</label>
+                <label><input type="radio" name="q_made" value="no"> No, it needs cooking, roasting or baking</label>
+                <label><input type="radio" name="q_made" value="not_sure"> Not sure yet</label>
+              </div>
             </div>
             <div class="form-nav">
               <button type="button" class="btn btn-back" onclick="nlPrevStep(2)">← Back</button>
-              <button type="button" class="btn btn-dark" onclick="nlNextStep(2)">Next: Volume &amp; Timeline →</button>
+              <button type="button" class="btn btn-dark" onclick="nlNextStep(2)">Next: How We'd Run It →</button>
             </div>
           </div>
 
           <div class="form-step" data-step="3">
+            <div class="field">
+              <label>Packaging</label>
+              <div class="checkbox-grid one">
+                <label><input type="radio" name="q_packaging" value="premade"> I'll send pre-made pouches or bags</label>
+                <label><input type="radio" name="q_packaging" value="rollstock"> I'll send roll stock film</label>
+                <label><input type="radio" name="q_packaging" value="nlc_sources"> North Lakes sources packaging</label>
+                <label><input type="radio" name="q_packaging" value="not_sure"> Not sure yet</label>
+              </div>
+            </div>
+            <div class="field">
+              <label>Blending</label>
+              <div class="checkbox-grid">
+                <label><input type="radio" name="q_blend" value="single"> Single ingredient</label>
+                <label><input type="radio" name="q_blend" value="preblended"> Already blended, I'll ship it</label>
+                <label><input type="radio" name="q_blend" value="nlc_blends"> North Lakes blends it</label>
+                <label><input type="radio" name="q_blend" value="not_sure"> Not sure yet</label>
+              </div>
+            </div>
+            <div class="field" id="nl_ingcount_wrap" style="display:none"><label>About how many ingredients? <span class="hint">(for allergen clean-down planning)</span></label><input type="number" id="q_ingcount" placeholder="e.g. 8" min="1"></div>
+            <div class="field" id="nl_ingredients_wrap">
+              <label>Ingredients</label>
+              <div class="checkbox-grid">
+                <label><input type="radio" name="q_ingredients" value="customer"> I supply them</label>
+                <label><input type="radio" name="q_ingredients" value="nlc"> North Lakes sources them (turnkey)</label>
+                <label><input type="radio" name="q_ingredients" value="mix"> A mix</label>
+                <label><input type="radio" name="q_ingredients" value="not_sure"> Not sure yet</label>
+              </div>
+            </div>
+            <div class="field">
+              <label>This first run is for</label>
+              <div class="checkbox-grid">
+                <label><input type="radio" name="q_runtype" value="test"> Test / samples (not for sale)</label>
+                <label><input type="radio" name="q_runtype" value="retail"> Retail launch</label>
+                <label><input type="radio" name="q_runtype" value="ongoing"> Ongoing production</label>
+                <label><input type="radio" name="q_runtype" value="not_sure"> Not sure yet</label>
+              </div>
+            </div>
+            <div class="form-nav">
+              <button type="button" class="btn btn-back" onclick="nlPrevStep(3)">← Back</button>
+              <button type="button" class="btn btn-dark" onclick="nlNextStep(3)">Next: Volume &amp; Timeline →</button>
+            </div>
+          </div>
+
+          <div class="form-step" data-step="4">
             <div class="field-row">
-              <div class="field"><label>Total units needed</label><input type="number" id="q_units" placeholder="e.g. 8000"></div>
-              <div class="field"><label>Target timeline</label><input type="text" id="q_timeline" placeholder="e.g. ready by Nov 2026"></div>
+              <div class="field"><label>Units for the first run</label>
+                <select id="q_units">
+                  <option value="">Choose…</option>
+                  <option value="under_1k">Under 1,000</option>
+                  <option value="1k_5k">1,000–5,000</option>
+                  <option value="5k_25k">5,000–25,000</option>
+                  <option value="25k_plus">25,000+</option>
+                  <option value="not_sure">Not sure yet</option>
+                </select>
+              </div>
+              <div class="field"><label>Target timeline</label><input type="text" id="q_timeline" placeholder="e.g. ready by March 2027"></div>
             </div>
             <div class="field">
               <label>Allergens present <span class="hint">(select all that apply &mdash; any major allergen adds a $649 clean-down per run)</span></label>
@@ -981,7 +1065,7 @@
               <textarea id="q_notes" rows="3" placeholder="Fulfillment needs, expected monthly order volume, questions..."></textarea>
             </div>
             <div class="form-nav">
-              <button type="button" class="btn btn-back" onclick="nlPrevStep(3)">← Back</button>
+              <button type="button" class="btn btn-back" onclick="nlPrevStep(4)">← Back</button>
               <button type="button" class="btn btn-primary" onclick="nlSubmitForm()">Submit Request →</button>
             </div>
           </div>
@@ -990,7 +1074,11 @@
             <div class="plus">✓</div>
             <h3 style="margin-top:12px;">Got it — we'll reply fast.</h3>
             <p style="margin-top:8px; color:var(--ink-soft);">Your request is in. Usually same day, always within 24 hours.</p>
-            <p class="fallback" style="margin-top:12px;">Rather talk? Call us at <a href="tel:16129163566">612.916.3566</a> or email <a href="mailto:ole@northlakescopacking.com">ole@northlakescopacking.com</a></p>
+            <div class="nl-actions">
+              <a class="btn btn-primary" id="nlBookBtn" href="https://booking.akiflow.com/ole-h-e639" target="_blank" rel="noopener">Book a 20-minute intro call →</a>
+              <a class="btn btn-back" id="nlSpecBtn" href="#" target="_blank" rel="noopener" style="display:none">Add more detail now (2 min)</a>
+            </div>
+            <p class="fallback" style="margin-top:12px;">Rather call? <a href="tel:16129163566">612.916.3566</a> or email <a href="mailto:ole@northlakescopacking.com">ole@northlakescopacking.com</a></p>
           </div>
         </form>
       </div>
@@ -1059,52 +1147,99 @@
     return Array.prototype.slice.call(document.querySelectorAll('input[name="'+name+'"]:checked')).map(function(c){ return c.value; }).join(', ');
   }
 
-  async function nlSubmitForm(){
-    var name = nlVal('q_name'), brand = nlVal('q_brand'), email = nlVal('q_email'), phone = nlVal('q_phone');
-    var formats = nlChecked('q_format'), fillweight = nlVal('q_fillweight'), formula = nlVal('q_formula');
-    var units = nlVal('q_units'), timeline = nlVal('q_timeline'), allergens = nlChecked('q_allergen'), notes = nlVal('q_notes');
+  // Quote requests go to the North Lakes portal (saves the lead, emails Ole, schedules the follow-up).
+  // If the portal can't take it or can't email Ole, Formspree still emails him so no request is lost.
+  var NL_PORTAL = 'https://nlc-portal.pages.dev';
+  var NL_BOOKING = 'https://booking.akiflow.com/ole-h-e639';
 
-    if (!name || !email) { alert('Please fill in your name and email before submitting.'); return; }
+  function nlRadio(name){ var el = document.querySelector('input[name="'+name+'"]:checked'); return el ? el.value : ''; }
+  function nlRadioLabel(name){ var el = document.querySelector('input[name="'+name+'"]:checked'); return el ? el.parentElement.textContent.trim() : '—'; }
+  function nlShow(id, on){ var el = document.getElementById(id); if (el) el.style.display = on ? '' : 'none'; }
+  function nlSync(){
+    var skus = nlRadio('q_skus'), same = nlRadio('q_same'), blend = nlRadio('q_blend');
+    var multi = skus && skus !== '1';
+    nlShow('nl_same_wrap', multi);
+    nlShow('nl_skulist_wrap', multi && same === 'no');
+    nlShow('nl_fill_wrap', !(multi && same === 'no'));
+    nlShow('nl_ingcount_wrap', blend === 'nlc_blends');
+    nlShow('nl_ingredients_wrap', blend !== 'preblended');
+  }
+  document.getElementById('quoteForm').addEventListener('change', function(e){
+    // "None" allergen is exclusive
+    if (e.target && e.target.name === 'q_allergen' && e.target.checked) {
+      document.querySelectorAll('input[name="q_allergen"]').forEach(function(c){
+        if (e.target.value === 'None' ? c.value !== 'None' : c.value === 'None') c.checked = false;
+      });
+    }
+    nlSync();
+  });
+
+  function nlDone(res){
+    document.getElementById('quoteForm').querySelectorAll('.form-step').forEach(function(s){ s.classList.remove('active'); });
+    document.querySelectorAll('.step-item').forEach(function(s){ s.classList.remove('active'); s.classList.add('done'); });
+    var book = document.getElementById('nlBookBtn');
+    book.href = (res && res.bookLink) || NL_BOOKING;
+    if (res && res.specLink) { var sp = document.getElementById('nlSpecBtn'); sp.href = res.specLink; sp.style.display = ''; }
+    document.getElementById('nlSuccess').classList.add('active');
+  }
+
+  async function nlSubmitForm(){
+    var multi = nlRadio('q_skus') && nlRadio('q_skus') !== '1' && nlRadio('q_same') === 'no';
+    var allergens = Array.prototype.slice.call(document.querySelectorAll('input[name="q_allergen"]:checked')).map(function(c){ return c.value; });
+    var formats = Array.prototype.slice.call(document.querySelectorAll('input[name="q_format"]:checked')).map(function(c){ return c.value; });
+    var p = {
+      name: nlVal('q_name'), brand: nlVal('q_brand'), email: nlVal('q_email'), phone: nlVal('q_phone'),
+      website: nlVal('q_website'),
+      product: nlVal('q_formula'), formats: formats,
+      skuCount: nlRadio('q_skus'), sameSpec: nlRadio('q_same'),
+      skuList: multi ? nlVal('q_skulist') : '', fillWeight: multi ? '' : nlVal('q_fillweight'),
+      alreadyMade: nlRadio('q_made'), packaging: nlRadio('q_packaging'), blend: nlRadio('q_blend'),
+      ingredientCount: nlRadio('q_blend') === 'nlc_blends' ? nlVal('q_ingcount') : '',
+      ingredients: nlRadio('q_blend') === 'preblended' ? '' : nlRadio('q_ingredients'),
+      runType: nlRadio('q_runtype'), units: nlVal('q_units'), timeline: nlVal('q_timeline'),
+      allergens: allergens, notes: nlVal('q_notes')
+    };
+
+    if (!p.name || !p.email || !p.brand) { alert('Please add your name, brand and email before submitting.'); nlSetStep(1); return; }
 
     var btn = document.querySelector('[onclick="nlSubmitForm()"]');
     var origText = btn.textContent;
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
+    var portal = null;
     try {
+      var r = await fetch(NL_PORTAL + '/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p) });
+      var d = await r.json();
+      if (d && d.success) portal = d;
+    } catch (e) { portal = null; }
+
+    if (portal && portal.notified) { nlDone(portal); return; }
+
+    // Backup email to Ole through Formspree (portal down, or portal email not switched on yet).
+    try {
+      var unitsSel = document.getElementById('q_units');
       var res = await fetch('https://formspree.io/f/maenoqwo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          _subject: 'Quote Request — ' + (brand || name || 'New Inquiry'),
-          name: name,
-          brand: brand,
-          email: email,
-          phone: phone || '—',
-          formats: formats || '—',
-          fill_weight: (fillweight || '—') + 'g',
-          formula: formula || '—',
-          units: units || '—',
-          timeline: timeline || '—',
-          allergens: allergens || '—',
-          notes: notes || '—'
+          _subject: 'Quote Request — ' + (p.brand || p.name || 'New Inquiry'),
+          name: p.name, brand: p.brand, email: p.email, phone: p.phone || '—',
+          product: p.product || '—', formats: formats.join(', ') || '—',
+          products_or_flavors: p.skuCount || '—', same_spec_for_all: nlRadioLabel('q_same'),
+          sku_list: p.skuList || '—', fill_weight: p.fillWeight ? p.fillWeight + ' g' : '—',
+          already_made: nlRadioLabel('q_made'), packaging: nlRadioLabel('q_packaging'),
+          blending: nlRadioLabel('q_blend') + (p.ingredientCount ? ' (' + p.ingredientCount + ' ingredients)' : ''),
+          ingredients: p.ingredients ? nlRadioLabel('q_ingredients') : '—', run_type: nlRadioLabel('q_runtype'),
+          units: unitsSel.value ? unitsSel.options[unitsSel.selectedIndex].text : '—', timeline: p.timeline || '—',
+          allergens: allergens.join(', ') || '—', notes: p.notes || '—',
+          portal: portal ? ('saved as ' + portal.leadId) : 'NOT saved in portal'
         })
       });
-
-      if (res.ok) {
-        document.getElementById('quoteForm').style.display = 'none';
-        document.getElementById('nlSuccess').classList.add('active');
-      } else {
-        var data = await res.json();
-        if (data.errors) {
-          alert('Submission error: ' + data.errors.map(function(e){ return e.message; }).join(', '));
-        } else {
-          throw new Error('Server error');
-        }
-        btn.textContent = origText;
-        btn.disabled = false;
-      }
+      if (res.ok || portal) { nlDone(portal); return; }
+      throw new Error('Server error');
     } catch(err) {
+      if (portal) { nlDone(portal); return; }
       alert('Something went wrong. Please email us directly at ole@northlakescopacking.com');
       btn.textContent = origText;
       btn.disabled = false;
