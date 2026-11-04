@@ -73,7 +73,31 @@
       "name": "What packaging formats can you run?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sachets, stick packs, and zipper pouches today, plus hand-fill of gusset bags for small batches with no machine minimum. A vertical (VFFS) line and a dedicated stick pack line are on order for limited runs up to 50,000 units per flavor \u2014 now booking."
+        "text": "Sachets, stand-up gusset pouches and zipper pouches today, auger-filled on our HMC Pouchmaster HFFS line, plus hand-fill of gusset bags for small batches with no machine minimum. Stick packs are coming: 30, 40 and 50 mm widths, plus 20 mm for 1 g fills. A vertical (VFFS) line and a dedicated stick pack line are on order for limited runs up to 50,000 units per flavor \u2014 now booking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do you overfill?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We fill to comply with NIST Handbook 133: the lot average meets or exceeds label weight and no individual package falls below the maximum allowable variation. Standard fill target is label +1% for fills of 30 g and over, +2\u20133% for 5\u201330 g, and +3\u20135% under 5 g. Each run is checkweighed or sample-weighed and recorded. Tighter targets are available with 100% checkweighing or extra sampling, priced accordingly. Net contents and overfill guide."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much powder should I send?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Send 4\u20136% more than theoretical (units \u00d7 label weight). That covers the overfill plus process loss: hopper heel, startup and rejects. Example: 10,000 sachets at 10 g is 100 kg theoretical, so send 104\u2013106 kg."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I'm supplying roll stock film. What does my film supplier need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our roll stock film spec (PDF): core, roll size, wind, width, repeat and eye mark for our HMC Pouchmaster line. Have your supplier confirm each item with their quote."
       }
     },
     {
@@ -243,6 +267,8 @@
   .cap-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
   @media (max-width:900px){ .cap-grid{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:520px){ .cap-grid{ grid-template-columns:1fr; } }
+  .cap-grid-2{ grid-template-columns:repeat(2,1fr); }
+  @media (max-width:520px){ .cap-grid-2{ grid-template-columns:1fr; } }
   .cap-card{ background:var(--card); border:1px solid var(--line); border-radius:18px; padding:24px; }
   .cap-card h4{ font-family:var(--body); font-size:0.88rem; color:var(--ink-soft); font-weight:500; letter-spacing:0; }
   .cap-card .range{ font-family:var(--display); font-weight:800; color:var(--pine); font-size:1.75rem; letter-spacing:-0.02em; margin-top:8px; display:block; line-height:1.15; }
@@ -542,8 +568,19 @@
       <div class="cap-card"><h4>Flavors per day</h4><span class="range">2&ndash;3</span><div class="sub">particle size up to 1/8"</div></div>
     </div>
     <div class="cap-grid" style="margin-top:14px;">
-      <div class="cap-card"><h4>Formats</h4><span class="range" style="font-size:1.05rem;">Sachets, stick packs, zipper pouches</span></div>
+      <div class="cap-card"><h4>Pouch formats</h4><span class="range" style="font-size:1.05rem;">Sachets, stand-up gusset &amp; zipper pouches</span><div class="sub">HMC Pouchmaster HFFS line, auger powder filling</div></div>
       <div class="cap-card"><h4>Small-batch / hand-fill</h4><span class="range" style="font-size:1.05rem;">Gusset bags, hand-filled</span><div class="sub">no machine minimum</div></div>
+      <div class="cap-card"><h4>Powder filling</h4><span class="range" style="font-size:1.05rem;">Auger fill</span><div class="sub">dry powders, food and supplements</div></div>
+      <div class="cap-card"><h4>Checkweighing</h4><span class="range" style="font-size:1.05rem;">Every run</span><div class="sub">checkweighed or sample-weighed, recorded</div></div>
+    </div>
+    <div class="cap-grid cap-grid-2" style="margin-top:14px;">
+      <div class="cap-card"><h4>Stick packs &mdash; coming</h4><span class="range" style="font-size:1.05rem;">30 / 40 / 50 mm</span><div class="sub">plus 20 mm for 1 g fills</div></div>
+      <div class="cap-card"><h4>Supplying roll stock?</h4><span class="range" style="font-size:1.05rem;"><a href="/docs/NLC_Roll_Stock_Film_Spec_Rev1.0.pdf" target="_blank" rel="noopener">Film spec (PDF)</a></span><div class="sub">send it to your film supplier</div></div>
+    </div>
+    <div class="cap-card" style="margin-top:14px;">
+      <h4>Fill-weight policy</h4>
+      <p style="margin-top:8px; line-height:1.6;">We fill to comply with NIST Handbook 133: the lot average meets or exceeds label weight and no individual package falls below the maximum allowable variation. Standard fill target is label +1% for fills of 30 g and over, +2&ndash;3% for 5&ndash;30 g, and +3&ndash;5% under 5 g. Each run is checkweighed or sample-weighed and recorded.</p>
+      <p style="margin-top:8px; line-height:1.6;">Supplying your own powder? Send 4&ndash;6% over theoretical to cover overfill and process loss. Tighter targets are available with 100% checkweighing or extra sampling, priced accordingly. <a href="/blog/net-contents-overfill-nist-handbook-133.html">Read our net contents &amp; overfill guide &rarr;</a></p>
     </div>
 
     <div class="callout-hot">
@@ -718,7 +755,19 @@
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>What packaging formats can you run?</span><span class="plus">+</span></button>
-        <div class="faq-a"><p>Sachets, stick packs, and zipper pouches today, plus hand-fill of gusset bags for small batches with no machine minimum. A vertical (VFFS) line and a dedicated stick pack line are on order for limited runs up to 50,000 units per flavor — now booking.</p></div>
+        <div class="faq-a"><p>Sachets, stand-up gusset pouches and zipper pouches today, auger-filled on our HMC Pouchmaster HFFS line, plus hand-fill of gusset bags for small batches with no machine minimum. Stick packs are coming: 30, 40 and 50 mm widths, plus 20 mm for 1 g fills. A vertical (VFFS) line and a dedicated stick pack line are on order for limited runs up to 50,000 units per flavor — now booking.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>How much do you overfill?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>We fill to comply with NIST Handbook 133: the lot average meets or exceeds label weight and no individual package falls below the maximum allowable variation. Standard fill target is label +1% for fills of 30 g and over, +2&ndash;3% for 5&ndash;30 g, and +3&ndash;5% under 5 g. Each run is checkweighed or sample-weighed and recorded. Tighter targets are available with 100% checkweighing or extra sampling, priced accordingly. <a href="/blog/net-contents-overfill-nist-handbook-133.html">Net contents and overfill guide</a>.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>How much powder should I send?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Send 4&ndash;6% more than theoretical (units &times; label weight). That covers the overfill plus process loss: hopper heel, startup and rejects. Example: 10,000 sachets at 10 g is 100 kg theoretical, so send 104&ndash;106 kg.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span>I&rsquo;m supplying roll stock film. What does my film supplier need?</span><span class="plus">+</span></button>
+        <div class="faq-a"><p>Our <a href="/docs/NLC_Roll_Stock_Film_Spec_Rev1.0.pdf" target="_blank" rel="noopener">roll stock film spec (PDF)</a>: core, roll size, wind, width, repeat and eye mark for our HMC Pouchmaster line. Have your supplier confirm each item with their quote.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q"><span>Are you GMP or SQF certified?</span><span class="plus">+</span></button>
@@ -744,6 +793,12 @@
       <p>What we tell brands on the phone, written down — so you can pencil out your own numbers before you call.</p>
     </div>
     <div class="journal-grid">
+      <a class="journal-card" href="/blog/net-contents-overfill-nist-handbook-133.html">
+        <span class="tag2">Compliance</span>
+        <h4>Net Contents &amp; Overfill: NIST Handbook 133 Guide for Brands</h4>
+        <p>How much overfill is normal, the MAV by pack size, and how much extra powder to send your co-packer.</p>
+        <span class="read">Read the story &rarr;</span>
+      </a>
       <a class="journal-card" href="/blog/true-cost-of-a-50000-unit-minimum.html">
         <span class="tag2">Strategy</span>
         <h4>The True Cost of a 50,000-Unit Minimum</h4>
@@ -946,7 +1001,7 @@
               <label>Packaging format <span class="hint">(select all that apply)</span></label>
               <div class="checkbox-grid">
                 <label><input type="checkbox" name="q_format" value="Sachets"> Sachets</label>
-                <label><input type="checkbox" name="q_format" value="Stick packs"> Stick packs</label>
+                <label><input type="checkbox" name="q_format" value="Stick packs"> Stick packs (coming soon)</label>
                 <label><input type="checkbox" name="q_format" value="Zipper pouches"> Zipper pouches</label>
                 <label><input type="checkbox" name="q_format" value="Gusset bags (hand-fill)"> Gusset bags (hand-fill)</label>
               </div>
@@ -968,6 +1023,7 @@
               </div>
             </div>
             <div class="field" id="nl_fill_wrap"><label>Fill weight (grams) <span class="hint">(per unit; leave blank if not sure)</span></label><input type="number" id="q_fillweight" placeholder="e.g. 25" min="0" step="any"></div>
+            <p class="hint" style="margin:-6px 0 14px; font-size:0.82rem; color:var(--ink-soft); line-height:1.5;">We fill to NIST Handbook 133. Standard target is label +1% for fills of 30 g and over, +2&ndash;3% for 5&ndash;30 g, +3&ndash;5% under 5 g. If you supply the powder, plan to send 4&ndash;6% over theoretical. <a href="/blog/net-contents-overfill-nist-handbook-133.html" target="_blank" rel="noopener">Net contents &amp; overfill guide</a></p>
             <div class="field" id="nl_skulist_wrap" style="display:none">
               <label>List each one <span class="hint">(product, fill weight, format, rough units)</span></label>
               <textarea id="q_skulist" rows="4" placeholder="Lemon electrolyte, 7 g, stick pack, 5,000&#10;Berry electrolyte, 7 g, stick pack, 3,000"></textarea>
@@ -995,6 +1051,7 @@
                 <label><input type="radio" name="q_packaging" value="nlc_sources"> North Lakes sources packaging</label>
                 <label><input type="radio" name="q_packaging" value="not_sure"> Not sure yet</label>
               </div>
+              <p class="hint" style="margin-top:8px; font-size:0.82rem; color:var(--ink-soft); line-height:1.5;">Sending roll stock? Give your film supplier our <a href="/docs/NLC_Roll_Stock_Film_Spec_Rev1.0.pdf" target="_blank" rel="noopener">roll stock film spec (PDF)</a>.</p>
             </div>
             <div class="field">
               <label>Blending</label>
