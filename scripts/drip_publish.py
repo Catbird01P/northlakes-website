@@ -26,9 +26,9 @@ PUBLISH_HOUR = 9
 
 CARD = """    <div style="background:#fff;border:1px solid #E4E0D6;border-radius:10px;padding:1.5rem;display:flex;flex-direction:column;">
       <span style="font-size:0.62rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#A8322D;display:block;margin-bottom:0.5rem">{category}</span>
-      <h3 style="font-size:0.95rem;font-weight:800;color:#1E2622;margin-bottom:0.4rem;line-height:1.4;flex:1"><a href="/blog/{file}" style="color:#1E2622;text-decoration:none">{title}</a></h3>
+      <h3 style="font-size:0.95rem;font-weight:800;color:#1E2622;margin-bottom:0.4rem;line-height:1.4;flex:1"><a href="/blog/{slug}" style="color:#1E2622;text-decoration:none">{title}</a></h3>
       <p style="font-size:0.85rem;color:#59625D;margin-bottom:0.75rem;line-height:1.6">{excerpt}</p>
-      <a href="/blog/{file}" style="font-size:0.78rem;font-weight:700;color:#A8322D;text-decoration:none">Read &rarr;</a>
+      <a href="/blog/{slug}" style="font-size:0.78rem;font-weight:700;color:#A8322D;text-decoration:none">Read &rarr;</a>
     </div>
 """
 
@@ -89,13 +89,13 @@ def main():
     marker = '<div class="post-grid">\n'
     if marker not in idx:
         sys.exit("Could not find post-grid in blog/index.html")
-    card = CARD.format(category=html.escape(category), file=fname,
+    card = CARD.format(category=html.escape(category), file=fname, slug=fname[:-5] if fname.endswith(".html") else fname,
                        title=html.escape(title, quote=False), excerpt=html.escape(excerpt, quote=False))
     INDEX.write_text(idx.replace(marker, marker + card, 1))
 
     # Sitemap entry + bump /blog/ lastmod
     sm = SITEMAP.read_text()
-    loc = f"{SITE}/blog/{fname}"
+    loc = f"{SITE}/blog/{fname[:-5] if fname.endswith('.html') else fname}"
     if loc not in sm:
         sm = sm.replace("</urlset>", f"  <url><loc>{loc}</loc><lastmod>{today}</lastmod><priority>0.8</priority></url>\n</urlset>")
     sm = re.sub(r"(<loc>https://northlakescopacking\.com/blog/</loc><lastmod>)[^<]*", rf"\g<1>{today}", sm)

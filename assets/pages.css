@@ -1,0 +1,59 @@
+/* Site pages (services, industries, pricing, quality, FAQ, resources). Loaded after blog.css. */
+
+/* Mobile menu: shown when .navlinks hides (<=840px) */
+.nav-menu{ display:none; position:relative; }
+.nav-menu summary{ list-style:none; cursor:pointer; color:#fff; font-weight:600; font-size:0.9rem; padding:9px 12px; border:1px solid rgba(255,255,255,0.35); border-radius:10px; }
+.nav-menu summary::-webkit-details-marker{ display:none; }
+.nav-menu[open] summary{ background:rgba(255,255,255,0.12); }
+.nav-menu .menu-panel{ position:absolute; right:0; top:calc(100% + 8px); background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px; min-width:230px; box-shadow:0 18px 40px rgba(0,0,0,0.18); z-index:50; display:flex; flex-direction:column; }
+.nav-menu .menu-panel a{ color:var(--ink); text-decoration:none; padding:10px 12px; border-radius:8px; font-weight:600; font-size:0.95rem; }
+.nav-menu .menu-panel a:hover{ background:var(--card-2); }
+@media (max-width:840px){ .nav-menu{ display:block; } }
+@media (max-width:600px){ .nav-menu .menu-panel{ position:fixed; left:12px; right:12px; top:72px; min-width:0; max-height:calc(100vh - 90px); overflow-y:auto; } }
+
+/* Page hero */
+.page-hero{ padding-top:56px; padding-bottom:8px; }
+.page-hero h1{ font-family:var(--display); font-size:clamp(2rem,5vw,3.1rem); line-height:1.08; letter-spacing:-0.02em; color:var(--pine); margin:10px 0 16px; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .page-hero h1{ color:var(--ink); } }
+.page-hero .lead{ font-size:1.15rem; line-height:1.6; color:var(--ink-soft); max-width:62ch; }
+.page-hero .hero-ctas{ display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
+.page-hero .hero-ctas .btn{ margin-top:0; }
+.btn-ghost{ border:1.5px solid var(--line); color:var(--ink); background:var(--card); }
+.btn-ghost:hover{ border-color:var(--pine); }
+
+/* Stat strip */
+.stat-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:30px 0 6px; }
+.stat-strip div{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px 18px; }
+.stat-strip b{ display:block; font-family:var(--display); font-size:1.35rem; color:var(--pine); line-height:1.15; }
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .stat-strip b{ color:var(--ink); } }
+.stat-strip span{ font-size:0.82rem; color:var(--ink-soft); }
+@media (max-width:760px){ .stat-strip{ grid-template-columns:repeat(2,1fr); } }
+
+/* Card grid */
+.card-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:1.4em 0; }
+@media (max-width:640px){ .card-grid{ grid-template-columns:1fr; } }
+.card-grid .card{ background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 22px; text-decoration:none; color:var(--ink); display:block; }
+a.card:hover{ border-color:var(--pine); }
+.card-grid .card h3{ font-family:var(--display); font-size:1.08rem; margin:0 0 6px; color:var(--ink); }
+.card-grid .card p{ font-size:0.92rem; color:var(--ink-soft); margin:0; line-height:1.55; }
+.card-grid .card .tag{ display:inline-block; font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--red); margin-bottom:8px; }
+.prose .card-grid a.card{ text-decoration:none; }
+
+/* FAQ accordion (no JS) */
+.faq-list-p{ margin:1.2em 0; border-top:1px solid var(--line); }
+.faq-list-p details{ border-bottom:1px solid var(--line); padding:14px 0; }
+.faq-list-p summary{ cursor:pointer; font-weight:700; font-size:1.02rem; color:var(--ink); list-style:none; display:flex; justify-content:space-between; gap:16px; }
+.faq-list-p summary::-webkit-details-marker{ display:none; }
+.faq-list-p summary::after{ content:"+"; color:var(--red); font-weight:700; }
+.faq-list-p details[open] summary::after{ content:"\2013"; }
+.faq-list-p details p{ margin:10px 0 0; color:var(--ink-soft); }
+
+/* Badge for coming-soon */
+.soon{ display:inline-block; background:var(--red); color:#fff; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:5px 10px; border-radius:6px; vertical-align:middle; }
+
+/* Footer columns */
+footer .fcol{ min-width:150px; }
+footer .fcol a{ display:block; margin:4px 0; }
+
+/* Keep wide tables inside the screen on phones */
+.prose > table, .prose table.data-table{ min-width:0; display:block; max-width:100%; overflow-x:auto; }
