@@ -305,10 +305,10 @@
   .policy-box{ margin-top:32px; border-radius:22px; padding:32px; background:var(--card-2); }
   .policy-box h3{ font-size:1.5rem; color:var(--pine); }
   .policy-box p{ margin-top:10px; color:var(--ink-soft); line-height:1.6; }
-  .policy-row{ display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:20px; }
-  @media (max-width:640px){ .policy-row{ grid-template-columns:1fr; } }
-  .policy-chip{ display:flex; gap:16px; align-items:baseline; }
-  .policy-chip .pct{ font-family:var(--display); font-weight:800; color:var(--red); font-size:2.4rem; min-width:88px; line-height:1; }
+  .policy-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px 28px; margin-top:22px; }
+  @media (max-width:820px){ .policy-row{ grid-template-columns:1fr; } }
+  .policy-chip{ display:flex; flex-direction:column; gap:8px; align-items:flex-start; padding-top:14px; border-top:2px solid var(--line, rgba(0,0,0,.12)); }
+  .policy-chip .pct{ font-family:var(--display); font-weight:800; color:var(--red); font-size:2.4rem; line-height:1; white-space:nowrap; }
   .policy-chip p{ font-size:0.95rem; margin-top:0; }
 
   /* FULFILLMENT */
@@ -657,8 +657,8 @@
       <h3>Turnaround, booking fee &amp; price lock</h3>
       <p>Standard turnaround is <b>30 days</b> from a signed quote to finished product. A flat <b>$500 booking fee</b> reserves your production date and is credited to your run invoice. All ingredients, film, and COAs are due at least <b>7 days</b> before your scheduled run &mdash; that's what keeps the line moving on the date we gave you. Finished product is held until the invoice is paid.</p>
       <div class="policy-row">
-        <div class="policy-chip"><div class="pct">$500</div><p>Flat fee to move your booked production date &mdash; it protects the slot we held for you and turned other work away to keep open.</p></div>
         <div class="policy-chip"><div class="pct">$500</div><p>Booking fee to reserve your date &mdash; credited to your run invoice and non-refundable. Once a slot's booked, it's real cost either way.</p></div>
+        <div class="policy-chip"><div class="pct">$500</div><p>Flat fee to move your booked production date &mdash; it protects the slot we held for you and turned other work away to keep open.</p></div>
         <div class="policy-chip"><div class="pct" style="white-space:nowrap;">8 mo</div><p>Your accepted pricing holds for reorders of the same product for 8 months. After that, increases are capped at 5% a year, with 30 days&rsquo; notice.</p></div>
       </div>
     </div>
