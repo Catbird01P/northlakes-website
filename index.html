@@ -350,7 +350,7 @@
   .about-grid{ display:grid; grid-template-columns:0.8fr 1.2fr; gap:56px; align-items:start; }
   @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
   .about-photo{ aspect-ratio:4/5; border-radius:22px; background:var(--pine); display:flex; align-items:flex-end; padding:24px; color:var(--on-pine); font-weight:600; position:relative; overflow:hidden; }
-  .about-photo svg{ position:absolute; left:-20px; top:40px; width:140%; height:auto; }
+  .about-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:62% 50%; }
   .about-grid blockquote{ font-family:var(--display); font-size:clamp(1.7rem,3.2vw,2.6rem); font-weight:700; line-height:1.15; letter-spacing:-0.02em; margin:0 0 24px; color:var(--pine); }
   .about-grid blockquote span{ color:var(--red); }
   .about-grid .prose p + p{ margin-top:14px; }
@@ -737,7 +737,7 @@
 <section id="about">
   <div class="wrap">
     <div class="about-grid">
-      <div class="about-photo"><svg viewBox="0 0 420 200" aria-hidden="true"><g fill="none" stroke-linecap="round" stroke-width="10"><path d="M0 40C50 10 100 10 150 40S250 70 300 40 400 10 450 40" stroke="#C4453F" opacity="0.8"/><path d="M0 100C50 70 100 70 150 100S250 130 300 100 400 70 450 100" stroke="#FFFFFF" opacity="0.14"/><path d="M0 160C50 130 100 130 150 160S250 190 300 160 400 130 450 160" stroke="#FFFFFF" opacity="0.08"/></g></svg><span style="position:relative">Facility photos coming soon — new build finishing out</span></div>
+      <div class="about-photo"><img src="/assets/facility-packaging-line.jpg" alt="Auger powder filling and packaging line on a clean epoxy floor at North Lakes Copacking" width="2000" height="1500" loading="lazy" decoding="async"></div>
       <div>
         <div class="eyebrow"><span class="dot"></span>ABOUT</div>
         <blockquote style="margin-top:14px;">"I've been through the runaround you're dealing with right now. Bigger copackers don't lose sleep over your production date. <span>I do.</span>"</blockquote>
